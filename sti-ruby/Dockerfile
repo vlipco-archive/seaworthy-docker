@@ -1,7 +1,12 @@
 FROM vlipco/hull
 MAINTAINER David Pelaez <david@vlipco.co>
-RUN cd /usr/local/bin && wget -q -O shoreman \
-  "https://raw.githubusercontent.com/davidpelaez/shoreman/dpt-additions/shoreman.sh" \
-  && chmod +x shoreman
-ENV STI_SCRIPTS_URL https://raw.githubusercontent.com/vlipco/docker-images/master/sti-ruby/sti
+
+# raw url to davidpelaez/shoreman/dpt-additions/shoreman.sh
+ADD http://bit.ly/1irS6WM /usr/local/bin/shoreman
+RUN ls /usr/local/bin && chmod +x /usr/local/bin/shoreman
+
+# raw url to vlipco/docker-images/sti-ruby/sti folder
+ENV STI_SCRIPTS_URL http://bit.ly/1kKKyCZ
+
 EXPOSE 5000
+USER fakeuser

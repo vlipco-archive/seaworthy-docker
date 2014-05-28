@@ -24,4 +24,3 @@ RUN mkdir -p /app && groupadd -r fakeuser -f -g 433 && \
 RUN rm -rf /usr/local/src/*
 
 WORKDIR /app
-USER fakeuser
