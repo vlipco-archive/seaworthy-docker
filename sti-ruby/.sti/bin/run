@@ -1,6 +1,15 @@
 #!/bin/bash
 set -eo pipefail
 
+# Associative data storage
+hput () {
+  eval hash"$1"='$2'
+}
+
+hget () {
+  eval echo '${hash'"$1"'#hash}' || echo "$3"
+}
+
 export PORT=5000
 
 export RACK_ENV=${RACK_ENV:-"production"}
@@ -14,6 +23,26 @@ export PATH="/app/bin:/app/vendor/bundle/bin:$PATH"
 [[ "$1" == "--debug" ]] && exec /bin/bash
 
 cd /app
+
+seafile="Seafile"
+
+echo "---> Parsing Seafile"
+
+while read line || [ -n "$line" ]; do
+  property=${line%%:*}
+  value=${line#*: }
+  hput $property $value
+done < ./Seafile
+
+#if [[ "$(hget healtcheck false)" == "true" ]]; then
+#	echo "---> Healthcheck present, registering with consul"
+#	frequency="$(hget frequency 10)s"
+#	echo "---> Check frequency: $frequency"
+#	curl -s "172.17.42.1/consul-register/$(hostname)/$frequency"
+#else
+#	echo "---> No healthcheck defined, skipping consul registration"
+#fi
+
 
 echo "---> Starting Procfile with Shoreman"
 
