@@ -1,4 +1,4 @@
-FROM vlipco/hull
+FROM vlipco/mini
 MAINTAINER David Pelaez <david@vlipco.co>
 
 # this will handle unarchiving! no tar xzf needed
