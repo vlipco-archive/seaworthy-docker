@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while true; do
+	curl -s 172.17.42.1/consul-check/$(hostname)
+	sleep 1
+done
