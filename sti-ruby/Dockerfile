@@ -11,7 +11,7 @@ RUN cd /usr/local/src && curl -L -s \
   ruby-install -i /usr/local/ ruby $RUBY_VERSION -- --disable-install-rdoc 2> /dev/null && \
   gem install bundler && rm -rf /usr/local/src/* && rm -rf /tmp/* && yum clean all
 
-RUN cd /usr/local/bin && curl -L -s https://github.com/davidpelaez/shoreman/raw/dpt-additions/shoreman.sh > shoreman && chmod +rx /usr/local/bin/shoreman
+RUN cd /usr/local/bin && curl -Ls https://github.com/davidpelaez/shoreman/raw/dpt-additions/shoreman.sh > shoreman && chmod +rx /usr/local/bin/shoreman
 
 ENV STI_SCRIPTS_URL https://raw.githubusercontent.com/vlipco/docker-images/master/sti-ruby/.sti/bin
 
