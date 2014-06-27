@@ -43,7 +43,10 @@ if records.errcode then
 end
 
 if records[1].port then
-	ngx.var.target = records[1].target .. ":" .. records[1].port
+    -- resolve the target to an IP
+    local target_ip = dns:query(records[1].target)[1].address
+    -- pass the target ip to avoid resolver errors
+	ngx.var.target = target_ip .. ":" .. records[1].port
 else
 	log("DNS answer didn't include a port")
 	return abort("Unknown destination port", 500)
