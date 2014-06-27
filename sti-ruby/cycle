@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+date > date
+git commit -am "xxx"
+git push tester master
