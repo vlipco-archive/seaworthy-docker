@@ -8,7 +8,7 @@ ADD src/ngx_openresty-1.7.0.1-patched.tar.gz /openresty
 # so I added a patched tar
 
 RUN cd /openresty/ngx_openresty-1.7.0.1-patched && \
-	./configure && make install && \
+	yum install -y pcre-dev pcre-devel openssl-devel && ./configure && make install && \
 	ln -s /usr/local/openresty/nginx/sbin/nginx /usr/bin/nginx
 
 ADD conf /nginx/conf
