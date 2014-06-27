@@ -1,0 +1,95 @@
+
+//VARIABLES
+$the-darkest-grey: #333
+$the-lightest-grey: #ECECEC
+$text-grey: #AAA
+$C-grey: #CCC
+$C-grey-transparent: rgba(204, 204, 204, 0)
+$C-grey-05: rgba(204, 204, 204, 0.5)
+$client-color: #FF5D00
+$secondary-client-color: #2d89c6
+$error-red: #F04848
+$base-font-size: 14px
+$body-font-color: #494949
+
+html
+	background: rgba(0,0,0,0.3) !important
+
+
+//BASE
+*
+	box-sizing: border-box
+	-moz-box-sizing: border-box
+	-webkit-box-sizing: border-box
+	box-sizing: border-box
+	-webkit-font-smoothing: antialiased
+
+//Lets remove that horrible blue halo when selecting an element
+input, textarea, select, a
+	outline: none
+
+
+.t, input
+	font-family: Helvetica, Arial, 'Lucida Grande', sans-serif
+	font-size: $base-font-size
+	color: $body-font-color
+
+div, span
+	@extend .t
+
+.t-small
+	font-size: 12px
+
+.t-smallest
+	font-size: 10px
+
+.rb
+	border: 1px red solid
+
+.color-text_grey
+	color: $text-grey
+
+label
+	font-size: $base-font-size
+	color: $text-grey
+
+.button
+	padding: 8px 25px
+
+.bg-client_color
+	background-color: $client-color
+
+//Foundation monkeypatch to allow disabled custom selects
+.custom.dropdown.disabled
+	background-color: #ddd
+	cursor: regular
+
+a.selector, a.current
+	cursor: pointer
+
+.checkbox.custom.checked
+	line-height: 1.1
+
+.color-client_color
+	color: $client-color
+
+a.color-client_color:hover
+	color: $client-color
+
+em.row
+	@include row
+
+.left 
+	@include span-columns(12)
+	.button
+		float: left
+		margin-right: 25px
+
+.right
+	@include span-columns(12)
+	.button
+		float: right
+
+.fontWeigth-normal
+	font-weight: normal
+

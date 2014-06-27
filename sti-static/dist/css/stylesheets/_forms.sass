@@ -1,0 +1,318 @@
+@import "chosen/chosen"
+
+.input-border
+	border: 1px solid $C-grey
+.input-border-bang
+	border: 1px solid $C-grey !important
+
+.abs-checkbox
+	@extend .input-border
+	box-sizing: border-box
+	display: block
+	position: absolute
+	left: 0px
+	top: 0px
+	width: 16px
+	height: 16px
+	font-size: 15px
+	line-height: 11px
+	padding-left: 3px
+//CUSTOM FORM
+form.custom
+	padding: 0px 10px
+
+	.form-header
+		min-height: 45px
+		margin-bottom: 8px
+		.subsection-title
+			margin-bottom: 0px
+		.info
+			// display: block
+			margin-top: 5px
+	.form-content
+		@include clearfix
+		margin: 10px 0px
+	.form-line
+		@include row
+		label
+			@include span-columns(7)
+			text-align: right
+			margin-top: 7px
+			padding-right: 15px
+		label.inline
+			margin-bottom: 10px
+		label.double_line
+			margin-top: 0px
+		.input-large
+			@include span-columns(16)
+			position: relative
+		.input-medium
+			@include span-columns(14)
+			position: relative
+		.input-small
+			@include span-columns(10)
+			position: relative
+		.input-4
+			@include span-columns(4)
+			position: relative
+		.input-micro
+			@include span-columns(3)
+			position: relative
+
+	input, select
+		@extend .input-border
+		padding: 5px 10px
+		font-size: $base-font-size
+		margin-left: 0px
+		margin-bottom: 15px
+		color: $the-darkest-grey
+		background-image: none
+		height: 32px !important
+		width: 100%
+		&.bg-left
+			padding-left: 33px
+		&:focus
+			@include transition (all 2.0s ease-in-out)
+			box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075)
+		&:disabled
+			//@include transition (all 1.0s ease-in-out)
+			background-color: $the-lightest-grey
+
+	select
+		width: 100%
+	.error-message
+		display: block
+		margin-top: 15px
+		//visibility: hidden
+
+	// &.show-errors
+	// 	.error-message
+	// 		visibility: visible
+
+	//CHECKBOXES
+	input[type=checkbox]
+		position: absolute
+		overflow: hidden
+		clip: rect(0 0 0 0)
+		height: 1px
+		width: 1px
+		margin: -1px
+		padding: 0
+		border: 0
+		+ label
+			color: $body-font-color
+			position: relative
+			padding-left: 25px
+			height: 15px
+			display: inline-block
+			line-height: 15px
+			vertical-align: middle
+			cursor: pointer
+		& + label:after
+			@extend .abs-checkbox
+			content: " "
+		&:checked + label:after
+			@extend .abs-checkbox
+			content: "x"
+
+//Dropdowns are provided by chosen.
+//CHOSEN MODS
+
+.chosen-single
+	@extend .input-border-bang
+	padding: 5px 10px 5px 33px !important
+	box-shadow: none !important
+	font-size: $base-font-size
+	margin-left: 0px
+	margin-bottom: 15px
+	line-height: 150%
+	color: $the-darkest-grey
+	background-image: none
+	background: transparent !important
+	height: 32px !important
+	width: 100%
+	border-radius: 0px !important
+	& b
+		margin-top: 4px
+
+//the only one without icon
+#document_type_chosen > .chosen-single
+	padding: 5px 10px 5px 10px !important
+
+.chosen-container 
+	& .chosen-drop
+		@extend .input-border-bang
+		margin-top: -16px
+		border-radius: 0px !important
+		& chosen-search
+			@extend .input-border-bang
+	& .chosen-results
+		max-height: 200px
+		& li.highlighted
+			background-image: none !important
+			background-color: $client-color
+
+
+//FORM IMPLEMENTATIONS
+form#buyersForm
+	@include span-columns(11)
+	@include shift(1)
+	.form-line
+		@include shift(1)
+		@include span-columns(23)
+		label
+			@include span-columns(5)
+	.form-action
+		@include clearfix()
+		width: 360px
+		margin: 10px 0px 15px 0px
+		em
+			@include span-columns(24)
+			margin-bottom: 7px
+		a.button
+			background: $secondary-client-color
+			top: 10px
+		a.button:first-of-type
+			margin-right: 14px
+
+form#uiAddress
+	@include span-columns(24)
+	.form-header
+		margin-bottom: 5px
+	.form-content
+		margin-top: 10px
+	.form-line
+		@include span-columns(24)
+
+form#ccForm
+	@include span-columns(24)
+	.form-content
+		margin: 36px 0px 10px 0px
+
+
+@mixin input-bg-icon($icon)
+	@include flaticon($icon)
+	color: $client-color
+	display: block
+	position: absolute
+	top: 7px
+	left: 10px
+	font-size: 16px
+	z-index: 9
+	content: $icon
+
+.input-bg_phone
+	&:before
+		@include input-bg-icon($icon-smartphone)
+
+.input-bg_email
+	&:before
+		@include input-bg-icon($icon-mail)
+
+.input-bg_world
+	&:before
+		@include input-bg-icon($icon-globe)
+
+
+.input-bg_lock
+	&:before
+		@include input-bg-icon($icon-lock)
+
+.input-bg_people
+	&:before
+		@include input-bg-icon($icon-people)
+
+.input-bg_id
+	&:before
+		@include input-bg-icon($icon-id)
+
+
+select-country
+	display: block
+	@include clearfix
+	&[disabled='disabled']
+		pointer-events: none
+		& .chosen-single
+			background: none
+			background-color: $the-lightest-grey !important
+
+@mixin feedbackIcon()
+	@include clearfix()
+	left: 98%
+	top: -5px
+	position: absolute
+	color: $C-grey
+	&:after
+		width: 32px
+		height: 32px
+		font-size: 20px
+
+
+.show-feedback
+	.input-feedback-icon
+		@include feedbackIcon()
+		display: block
+		&:after
+			@include input-bg-icon($icon-check)
+			font-size: 20px
+			color: $C-grey
+		&.error:after
+			@include input-bg-icon($icon-circled-x)
+			font-size: 20px
+			color: $C-grey
+
+
+
+.button
+	color: white
+	cursor: pointer
+	//this is needed bacuase of the strangest bug: http://pacho.me/post/54548771058/hover-not-working
+	position: relative
+	background-color: $secondary-client-color
+	&:hover
+		background-color: tint($secondary-client-color, 10%)
+	&.bg-grey
+		background-color: $text-grey
+		&:hover
+			background-color: tint($text-grey, 10%)
+
+
+label.isACheckbox
+	color: $body-font-color
+
+
+
+form#uiAddress
+	margin-bottom: 10px
+
+
+.franchise_logo
+	display: block
+	position: absolute
+	width: 25px
+	height: 20px
+	background-position: center center
+	background-repeat: no-repeat
+	top: 7px
+	right: 15px
+	&.visa
+		background-image: url('../assets/images/icon-visa.png')
+	&.american
+		background-image: url('../assets/images/icon-american.png')
+	&.mastercard
+		background-image: url('../assets/images/icon-mastercard.png')
+	&.unknown, &.discover, &.diners, &.jcb, &.diners, &.error, &.invalid
+		//background-image: url('../assets/images/icon-unknown.png')
+		background-image: url('../assets/images/icon-invalid.png')
+
+input.card-expiration
+	width: 50px
+	float: left
+	margin-right: 10px
+
+input:invalid
+	box-shadow: none
+
+#label_usingDefaultaddress
+	margin-bottom: 29px
+	margin-top: 8px

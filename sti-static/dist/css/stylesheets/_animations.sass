@@ -1,0 +1,36 @@
+//[step='intro'], [step='shipping'], [step='credit'], [step='payment'], [step='confirmation']
+.entering, .leaving
+	@include transition-duration(1s)
+	//@include transition-timing-function(ease-in)
+	@include transition-property (transform)
+	z-index: 2
+.leaving
+	z-index: 1
+
+.entering
+	@include transform(translateY(-830px))
+	//left: 830px
+.entering.entering-active
+	@include transform(translateY(0px))
+	//left: 0px
+.leaving
+	@include transform(translateY(0px))
+	//left: 0px
+.leaving.leaving-active
+	@include transform(translateY(830px))
+	//left: -830px
+
+.reverse
+	.leaving
+		@include transform(translateY(0px))
+		//left: 0px
+	.leaving.leaving-active
+		@include transform(translateY(-830px))
+		//left: 830px
+	.entering
+		@include transform(translateY(830px))
+		//left: -830px
+	.entering.entering-active
+		@include transform(translateY(0px))
+		//left: 0px
+
