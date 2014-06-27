@@ -1,0 +1,134 @@
+$modal-top-margin: 50px
+$modal-height: 600px
+$modal-width: 860px
+$modal-top-when-hidden: -650px
+.topRow
+	@include clearfix
+	border-bottom: 1px solid $C-grey
+	padding-bottom: 25px
+
+#app_desc
+	padding-top: 25px
+
+#app_modal
+	@include outer-container
+	@include animation(modalBounce 1.0s )
+	@include animation-timing-function(ease-out-quad)
+	@include animation-delay(1s)
+	@include animation-fill-mode(both)
+	padding: 30px 30px
+	background: white
+	position: absolute
+	width: $modal-width
+	height: $modal-height
+	margin-left: 50%
+	left: -430px
+	top: -650px
+	border: none
+	-moz-box-shadow: 0px 0px 10px 10px rgba(51,51,51,0.3)
+	-webkit-box-shadow: 0px 0px 10px 10px rgba(51,51,51,0.3)
+	box-shadow: 0px 0px 10px 10px rgba(51,51,51,0.3)
+	overflow: hidden
+
+	&.closing
+		@include animation(reverseModalBounce 1.0s)
+		@include animation-fill-mode(both)
+
+#merchantLogo
+	position: absolute
+	margin-top: 30px
+
+step-list
+	@include shift(8)
+	@include span-columns(9)
+	text-align: right
+	min-height: 100px
+	padding-right: 20px
+	//margin-right: 20px
+	.step-title
+		font-size: 20px
+		color: $client-color
+		margin-top: 20px
+	.nextStep-title
+		font-size: 16px
+		margin-top: 5px
+		color: $text-grey
+		text-transform: lowercase
+	&.hidden
+		visibility: hidden
+
+.topInfoBox
+	@include span-columns(6)
+	padding: 15px 0px 15px 15px
+	border-left: 3px solid $client-color
+	font-size: 12px
+	line-height: 14px
+
+.closeModal
+	@include span-columns(1)
+	position: relative
+	cursor: pointer
+	&:before
+		@include flaticon($icon-x)
+		position: absolute
+		color: $text-grey
+		font-size: 20px
+		top: -20px
+		left: 20px
+		text-align: center
+
+ng-view
+	display: block
+	padding: 30px 10px
+
+
+.footer
+	position: absolute
+	bottom: 0px
+	left: 0px
+	width: 860px
+	height: 70px
+	padding: 17px 50px 
+	background-color: $the-lightest-grey
+	border-top: 1px solid $C-grey
+
+@include keyframes(modalBounce) 
+	0%
+		//top: -1 * ($modal-top-margin + 50px)
+		top: -650px
+	85%
+		top: 70px
+	100%
+		top: 50px
+
+@include keyframes(reverseModalBounce) 
+	0%
+		top: 50px
+	15%
+		top: 70px
+	100%
+		top: -650px
+
+
+@include keyframes(rotation)
+	from
+		@include transform(rotate(0turn))
+	to
+		@include transform(rotate(1turn))
+
+@mixin loader()
+	display: block
+	&:before
+		@include animation(rotation 0.75s linear infinite)
+		@include flaticon($icon-loader)
+		margin-left: 49%
+		margin-left: calc(50% - 10px)
+		margin-top: 19%
+		//margin-top: calc(50% - 10px)
+		position: absolute
+		font-size: 20px
+		left: 0px
+		color: $client-color
+
+.loader
+	@include loader()

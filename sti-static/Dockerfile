@@ -7,7 +7,7 @@ ENV STI_SCRIPTS_URL https://raw.githubusercontent.com/vlipco/docker-images/maste
 #Install build dependencies
 RUN yum -y install gcc-c++ pcre-devel zlib-devel
 
-ADD conf /nginx/conf
+ADD .sti/conf /nginx/conf
 
 ENV NPS_VERSION 1.8.31.4
 ENV NGINX nginx-1.6.0
@@ -27,8 +27,4 @@ RUN cd /usr/local/bin && curl -Ls https://github.com/davidpelaez/shoreman/raw/dp
 
 EXPOSE 80
 
-
-
-
-CMD ["/usr/bin/shoreman", "/nginx/conf/Procfile"]
-
+CMD ["/usr/local/bin/shoreman", "/nginx/conf/Procfile"]

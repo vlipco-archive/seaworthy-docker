@@ -13,7 +13,7 @@ group_output() {
 }
 
 # bundle_artifact="/tmp/artifacts/bundle.tgz"
-cp -Rf /tmp/src/* /app
+cp -Rf /tmp/src/dist/* /app
 cd /app
 
 echo "CDNizing assets"
