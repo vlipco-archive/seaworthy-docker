@@ -10,6 +10,7 @@ function log(msg)
     ngx.log(ngx.ERR, msg, "\n")
 end
 
+-- ngx.say("Checking if it's in the " .. #domains .." known domains")
 -- TODO remove domain from host
 -- TODO handle root of the domain
 
@@ -22,20 +23,20 @@ local dns, err = resolver:new{
 
 if not dns then
 	log("failed to instantiate the resolver: " .. err)
-    return abort("Nameserver error", 500)
+    return abort("DNS error", 500)
 end
 
 local records, err = dns:query(query_subdomain, {qtype = dns.TYPE_SRV})
 
 if not records then
 	log("failed to query the DNS server: " .. err)
-    return abort("Unkown service", 500)
+    return abort("Internal routing error", 500)
 end
 
 if records.errcode then
     -- error code meanings available in http://bit.ly/1ppRk24
     if records.errcode == 3 then
-        return abort("Not found. Unkown target", 404)
+        return abort("Not found", 404)
     else
         log("DNS error #" .. records.errcode .. ": " .. records.errstr)
         return abort("DNS error", 500)

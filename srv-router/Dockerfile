@@ -12,12 +12,13 @@ RUN cd /openresty/ngx_openresty-1.7.0.1-patched && \
 	ln -s /usr/local/openresty/nginx/sbin/nginx /usr/bin/nginx
 
 ADD conf /nginx/conf
-RUN rm -rf /openresty && mkdir /nginx/logs && chown -R fakeuser:fakeuser /nginx
+RUN rm -rf /openresty && mkdir /nginx/logs
 
 EXPOSE 80
 
 ENV NS_IP 127.0.0.1
 ENV NS_PORT 53
-ENV TARGET_DOMAIN service.consul
+ENV TARGET service.consul
+ENV DOMAINS lvh.me,127.0.0.1.xip.io,9zlhb.xip.io
 
 CMD ["/usr/bin/nginx", "-p", "/nginx/", "-c", "conf/nginx.conf"]
