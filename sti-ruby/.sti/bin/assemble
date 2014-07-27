@@ -29,8 +29,7 @@ echo "Running bundle install:"
 echo
 
 bundle install --deployment --jobs 4 --clean \
-  --without development:test \
-  --binstubs vendor/bundle/bin \
+  --without development:test --binstubs \
   --path vendor/bundle | group_output
 
 echo
