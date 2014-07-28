@@ -3,7 +3,7 @@ MAINTAINER David Pelaez <david@vlipco.co>
 
 RUN yum upgrade -y && yum install -y automake gdbm-devel libffi-devel libyaml-devel \
   openssl-devel ncurses-devel readline-devel zlib-devel ruby-devel \
-  libxml2 libxml2-devel libxslt libxslt-devel git
+  libxml2 libxml2-devel libxslt libxslt-devel git mysql-devel
 
 RUN cd /usr/local/src && curl -L -s \
   "https://github.com/postmodern/ruby-install/archive/v0.4.3.tar.gz" \
