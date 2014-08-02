@@ -1,14 +1,12 @@
 #!/bin/bash
 set -eo pipefail
 
-export PORT=80
-
 # Allow users to inspect/debug the builder image itself, by using:
 # docker run -ti <image> --debug
 [[ "$1" == "--debug" ]] && exec /bin/bash
 
 cd /nginx/conf
 
-echo "---> Starting Procfile with Shoreman from $PWD"
+echo "---> Starting nginx server on port 5000"
 
 exec /usr/local/bin/shoreman

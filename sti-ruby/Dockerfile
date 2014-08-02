@@ -16,6 +16,6 @@ RUN gem install bundler && bundle config build.nokogiri --use-system-libraries
 
 RUN cd /usr/local/bin && curl -Ls https://github.com/davidpelaez/shoreman/raw/dpt-additions/shoreman.sh > shoreman && chmod +rx /usr/local/bin/shoreman
 
-ENV STI_SCRIPTS_URL https://raw.githubusercontent.com/vlipco/docker-images/master/sti-ruby/.sti/bin
+ENV STI_SCRIPTS_URL https://raw.githubusercontent.com/vlipco/seaworthy-docker/master/sti-ruby/.sti/bin
 
 EXPOSE 5000
