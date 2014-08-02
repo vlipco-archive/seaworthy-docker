@@ -5,8 +5,6 @@ MAINTAINER David Pelaez <david@vlipco.co>
 #Install build dependencies
 RUN yum -y install gcc-c++ pcre-devel zlib-devel
 
-ADD .sti/conf /nginx/conf
-
 ENV NPS_VERSION 1.8.31.4
 ENV NGINX nginx-1.6.0
 
@@ -20,9 +18,11 @@ RUN cd /tmp && \
 	| tar xzf - && \
  	cd $NGINX && ./configure --add-module=/tmp/ngx_pagespeed-release-${NPS_VERSION}-beta && make && make install
 
-RUN mkdir /nginx/logs && chown -R fakeuser:fakeuser /nginx && touch /nginx/logs/{error,access}
 
 RUN cd /usr/local/bin && curl -Ls https://github.com/davidpelaez/shoreman/raw/dpt-additions/shoreman.sh > shoreman && chmod +rx /usr/local/bin/shoreman
+
+ADD .sti/conf /nginx/conf
+RUN mkdir /nginx/logs && chown -R fakeuser:fakeuser /nginx && touch /nginx/logs/{error,access}
 
 EXPOSE 5000
 

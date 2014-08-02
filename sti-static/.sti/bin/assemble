@@ -8,13 +8,15 @@ error() {
     exit 1
 }
 
-source_dir="${WWW_DIR:build}"
+# the default static dir is build in the root of the app
+static_dir="${STATIC_DIR:-build}"
+source_dir="/tmp/src/${static_dir}"
 
 if ! test -d "$source_dir"; then
-	error "The directory $source_dir doesn't exist."
+	error "The directory $static_dir doesn't exist, your code is missing a folder/configuration."
 fi
 
-echo "Copying static files from ${source_dir}"
-cp -Rf /tmp/src/${source_dir}/* /app
+echo "Copying static files from '${static_dir}' directory"
+cp -Rf ${source_dir}/* /app
 
 echo "Build complete. Wait for docker to commit the changes."
