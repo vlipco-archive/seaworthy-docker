@@ -1,0 +1,4 @@
+harbor: public
+builder: vlipco/sti-static
+healtcheck: true
+frequency: 30
