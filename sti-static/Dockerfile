@@ -22,6 +22,8 @@ RUN cd /tmp && \
 RUN cd /usr/local/bin && curl -Ls https://github.com/davidpelaez/shoreman/raw/dpt-additions/shoreman.sh > shoreman && chmod +rx /usr/local/bin/shoreman
 
 ADD .sti/conf /nginx/conf
+ADD build /nginx/sample-build
+
 RUN mkdir /nginx/logs && chown -R fakeuser:fakeuser /nginx && touch /nginx/logs/{error,access}
 
 EXPOSE 5000
