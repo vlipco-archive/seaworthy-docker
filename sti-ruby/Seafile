@@ -1,4 +1,1 @@
-harbor: public
-builder: vlipco/sti-ruby
-healtcheck: true
-frequency: 30
+{"builder":"vlipco/sti-ruby","frequency":30,"harbor":"public","healtcheck":true}%

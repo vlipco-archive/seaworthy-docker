@@ -6,6 +6,11 @@ error() {
     exit 1
 }
 
+#echo "000000000000"
+#env
+#echo "000000000000"
+
+
 # the default static dir is build in the root of the app
 static_dir="${STATIC_DIR:-build}"
 source_dir="/tmp/src/${static_dir}"

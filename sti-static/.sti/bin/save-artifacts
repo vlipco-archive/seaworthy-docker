@@ -1,4 +1,3 @@
 #!/bin/bash
 set -eo pipefail
-
-echo "Artifact caching doesn't apply for static files, skipping"
+# do nothing. Artifact caching doesn't apply for static files
