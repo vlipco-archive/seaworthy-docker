@@ -1,8 +1,6 @@
 #!/bin/bash
 set -eo pipefail
 
-echo "-----------------"
-
 error() {
     echo >&2 " !! $* Aborting."
     exit 1
