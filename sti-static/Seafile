@@ -1,6 +1,4 @@
 {
     "builder": "vlipco/sti-static",
-    "frequency": 30,
-    "harbor": "public",
-    "healtcheck": true
+    "harbor": "external"
 }
